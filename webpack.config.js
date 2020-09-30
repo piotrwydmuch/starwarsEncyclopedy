@@ -12,8 +12,16 @@ module.exports = {
            { 
                test: /\.(js|jsx)$/,
                loader: 'babel-loader', 
-               exclude: /node_modules/ 
+               exclude: /node_modules/,
             },
-       ]
+            {
+              test: /\.(png|jpe?g|svg)$/i,
+              use: [
+                {
+                  loader: 'file-loader',
+                },
+              ],
+            },
+       ],
    }
 };
