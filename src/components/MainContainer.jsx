@@ -16,13 +16,11 @@ const MainDiv = styled.div `
     margin: 100px auto;
     background-color: #E0E6EE;
 `
-
 const LogoImg = styled.img `
     display: block;
     margin: 0 auto;
     padding: 30px 0;
 `
-
 const FilmsContainer = styled.div `
     position: relative;
     display: flex;
