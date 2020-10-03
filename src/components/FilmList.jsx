@@ -25,16 +25,18 @@ const FilmList = () => {
           setFilms(result.data.results)
         }
         fetchData();
-      }, []);
-
-    // console.log(films)
+      }, []); 
 
     return ( 
         <>
             <Container>
                 <FilmUlList>
-                    {films.map(film =>
-                        <Film key={film.title} title={film.title}>{film.title}</Film>
+                    {films.map((film, index) =>
+                        <Film 
+                        key={film.title} 
+                        filmId={index} 
+                        title={film.title} />
+
                     )}
                 </FilmUlList>
             </Container>

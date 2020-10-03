@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import axios from 'axios';
+
+import FilmDetails from './FilmDetails.jsx';
 
 import { styled } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -23,10 +26,33 @@ const CustomTypography = styled(Typography)({
 });
 
 const Film = (props) => {
-    //state = {  }
+    
+    const [filmDetails, setFilmDetails] = useState([]);
+    const [planetDetails, setPlanetDetails] = useState([]);
+        
+    const dataCollapsed = useCallback((filmId) => {        
+        const apiUrl = `https://swapi.dev/api/films/${filmId}/`;
+        async function fetchData() {
+            const result = await axios(apiUrl);
+            setFilmDetails(result.data)
+        }
+        fetchData();
+    }, []);
+
+    const getPlanets = async (planetAPI) => {;
+        const planetAPIarr = [...planetAPI];
+        Promise.all(planetAPIarr.map(e => axios.get(e)))
+        .then(results=>setPlanetDetails(results));
+    }
+
+    useEffect(() => {
+        const planetsApiUrls = filmDetails.planets;
+        getPlanets(planetsApiUrls);
+    }, [filmDetails.planets]);
+    
     return ( 
         <>
-            <AccordionElement onChange={console.log('dksodksods')}>
+            <AccordionElement onClick={() => dataCollapsed(props.filmId+1)}>
                 <AccordionSummary
                 id={`id`}
                 >
@@ -34,8 +60,7 @@ const Film = (props) => {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                        sit amet blandit leo lobortis eget.
+                        <FilmDetails title={props.title} planets={filmDetails.planets} releaseDate={filmDetails.release_date}></FilmDetails>
                     </Typography>
                 </AccordionDetails>
             </AccordionElement>
