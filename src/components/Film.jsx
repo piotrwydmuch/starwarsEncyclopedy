@@ -42,7 +42,7 @@ const Film = (props) => {
     const getPlanets = async (planetAPI) => {;
         const planetAPIarr = [...planetAPI];
         Promise.all(planetAPIarr.map(e => axios.get(e)))
-        .then(results=>setPlanetDetails(results));
+        .then(results=> setPlanetDetails(results));
     }
 
     useEffect(() => {
@@ -52,16 +52,12 @@ const Film = (props) => {
     
     return ( 
         <>
-            <AccordionElement onClick={() => dataCollapsed(props.filmId+1)}>
-                <AccordionSummary
-                id={`id`}
-                >
+            <AccordionElement onClick={() => dataCollapsed(props.filmId+1)} id={`accordion_id${props.filmId+1}`}>
+                <AccordionSummary>
                 <CustomTypography>{props.title}<img src={ArrowOpen} /></CustomTypography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Typography>
-                        <FilmDetails title={props.title} planets={filmDetails.planets} releaseDate={filmDetails.release_date}></FilmDetails>
-                    </Typography>
+                    <FilmDetails plantesDetails={[...planetDetails]} />
                 </AccordionDetails>
             </AccordionElement>
         </>

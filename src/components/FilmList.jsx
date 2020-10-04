@@ -36,7 +36,6 @@ const FilmList = () => {
                         key={film.title} 
                         filmId={index} 
                         title={film.title} />
-
                     )}
                 </FilmUlList>
             </Container>
