@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
+import { makeStyles } from "@material-ui/core/styles";
 
 import Film from './Film.jsx';
+import AddFilm from './AddFilm.jsx';
 
-const Container = styled.div `
-    height: 80%;
-    padding: 0 30px;
-`
-const FilmUlList = styled.ul `
-    list-style: none;
-    padding: 0;
-    margin: 0;
-`
+const useStyles = makeStyles({
+    container: {
+        height: '80%',
+        padding: '0 30px',
+    },
+    filmList: {
+        listStyle: 'none',
+        padding: '0',
+        margin: '0',
+    }
+});
 
 const FilmList = () => {
 
@@ -25,20 +28,21 @@ const FilmList = () => {
           setFilms(result.data.results)
         }
         fetchData();
-      }, []); 
-
+    }, []); 
+    const classes = useStyles();
     return ( 
         <>
-            <Container>
-                <FilmUlList>
+            <div className={classes.container}>
+                <ul className={classes.filmList}>
                     {films.map((film, index) =>
                         <Film 
                         key={film.title} 
                         filmId={index} 
                         title={film.title} />
                     )}
-                </FilmUlList>
-            </Container>
+                </ul>
+            </div>
+            <AddFilm />
         </>
     );
 }

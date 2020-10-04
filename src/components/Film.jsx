@@ -10,13 +10,21 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 
 import ArrowOpen from '../../images/ARROW_OPEN.svg';
+import ArrowClose from '../../images/ARROW_CLOSE.svg';
 
 const AccordionElement = styled(Accordion)({
     fontFamily: 'Barlow',
     background: '#ffffff',
-    padding: '15px',
+    padding: '0',
     color: '#00687F',
     marginBottom: '30px',
+    boxShadow: '0px 2px 1px rgba(196, 196, 196, 0.2)',
+    borderRadius: '4px',
+    border: 'none'
+});
+const CustomAccordionSummary = styled(AccordionSummary)({
+    backgroundColor: '#fffffff',
+    boxShadow: '0px 4px 12px rgba(224, 230, 238, 0.5)'
 });
 const CustomTypography = styled(Typography)({
     display: 'flex',
@@ -53,9 +61,9 @@ const Film = (props) => {
     return ( 
         <>
             <AccordionElement onClick={() => dataCollapsed(props.filmId+1)} id={`accordion_id${props.filmId+1}`}>
-                <AccordionSummary>
-                <CustomTypography>{props.title}<img src={ArrowOpen} /></CustomTypography>
-                </AccordionSummary>
+                <CustomAccordionSummary>
+                    <CustomTypography>{props.title}<img src={ArrowOpen} /></CustomTypography>
+                </CustomAccordionSummary>
                 <AccordionDetails>
                     <FilmDetails plantesDetails={[...planetDetails]} />
                 </AccordionDetails>
