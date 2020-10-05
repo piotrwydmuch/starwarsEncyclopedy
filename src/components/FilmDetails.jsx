@@ -8,11 +8,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from "@material-ui/core/styles";
 
-
 const useStyles = makeStyles({
+    firstHeadTableCell: {
+      color: 'rgba(0, 104, 127, 1)',
+      paddingLeft: '0',
+    },
     firstTableCell: {
       color: 'rgba(0, 104, 127, 1)',
       paddingLeft: '0',
+      border: 'none',
     },
     customTableCell: {
         border: 'none',
@@ -28,7 +32,7 @@ const FilmDetails = (props) => {
                 <Table aria-label="Planets table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="left" className={classes.firstTableCell}>Planet Name</TableCell>
+                            <TableCell align="left" className={classes.firstHeadTableCell}>Planet Name</TableCell>
                             <TableCell align="right">Rotation period</TableCell>
                             <TableCell align="right">Orbital period</TableCell>
                             <TableCell align="right">Diameter</TableCell>
@@ -37,38 +41,35 @@ const FilmDetails = (props) => {
                             <TableCell align="right">Population</TableCell>
                         </TableRow>
                     </TableHead>
-                    {console.log(props.newPlanetDetails)}
-                    {console.log(props.plantesDetails)}
                     <TableBody>
+                    {/* films downloaded from API */}
                     {   props.plantesDetails.map((planet) => (
                         <TableRow key={planet.data.name}>
                             <TableCell align="left" component="th" scope="row" className={classes.firstTableCell}>
                                 {planet.data.name}
                             </TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.rotation_period}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.orbital_period}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.diameter}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.climate}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.surface_water}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.population}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.rotation_period}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.orbital_period}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.diameter}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.climate}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.surface_water}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.population}</TableCell>
                         </TableRow>
-                        ))
-                    }
+                    ))}
+                    {/* when adding new film */}
                     {   props.newPlanetDetails.map((planet) => (
                         <TableRow key={planet.data.results[0].name}>
                             <TableCell align="left" component="th" scope="row" className={classes.firstTableCell}>
                                 {planet.data.results[0].name}
                             </TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].rotation_period}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].orbital_period}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].diameter}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].climate}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].surface_water}</TableCell>
-                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].population}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.results[0].rotation_period}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.results[0].orbital_period}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.results[0].diameter}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.results[0].climate}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.results[0].surface_water}</TableCell>
+                            <TableCell className={classes.customTableCell} align="right">{planet.data.results[0].population}</TableCell>
                         </TableRow>
-                        ))
-                    }
-                   
+                    ))}
                     </TableBody>
                 </Table>
             </TableContainer>

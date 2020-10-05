@@ -37,12 +37,8 @@ const Film = (props) => {
     
     const [filmDetails, setFilmDetails] = useState([]);
     const [planetDetails, setPlanetDetails] = useState([]);
-    
     const [newPlanetDetails, setNewPlanetDetails] = useState([]);
-    
-    // const [newFilmDetails, setNewFilmDetails] = useState([]);
-    // const [planetNewFilmDetails, setPlanetNewFilmDetails] = useState([]);
-        
+
     const dataCollapsed = useCallback((filmId) => {    
         if (filmId <= 6) {
             const apiUrl = `https://swapi.dev/api/films/${filmId}/`;
@@ -66,14 +62,11 @@ const Film = (props) => {
         .then(results=> setPlanetDetails(results));
     }
 
-
     useEffect(() => {
         const planetsApiUrls = filmDetails.planets;
         getPlanets(planetsApiUrls);
     }, [filmDetails.planets]);
 
-
-    
     return ( 
         <>
             <AccordionElement onClick={() => dataCollapsed(props.filmId+1)} id={`accordion_id${props.filmId+1}`}>

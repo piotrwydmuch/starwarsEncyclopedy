@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from "@material-ui/core/styles";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 import ArrowOpen from '../../images/ARROW_OPEN.svg';
 import ArrowClose from '../../images/ARROW_CLOSE.svg';
@@ -16,7 +17,7 @@ import ArrowClose from '../../images/ARROW_CLOSE.svg';
 const useStyles = makeStyles({
     container: {
         height: '80%',
-        padding: '30px 30px 0px 30px',
+        padding: '30px',
         borderTop: '2px dashed #FFFFFF',
     },
     accordionElement: {
@@ -78,6 +79,7 @@ const planetList = [
 const AddFilm = (props) => {
     const classes = useStyles();
 
+
     return ( 
         <>
             <div className={classes.container}>
@@ -86,7 +88,7 @@ const AddFilm = (props) => {
                         <Typography className={classes.customTypgraphy}>Add movie<img src={ArrowOpen} /></Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <form className={classes.customForm} noValidate autoComplete="off">
+                        <form className={classes.customForm} autoComplete="off">
                             <TextField 
                             id="standard-first" 
                             className={classes.formInput} 

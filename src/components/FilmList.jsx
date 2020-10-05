@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         listStyle: 'none',
         padding: '0',
         margin: '0',
-    }
+    },
 });
 
 const FilmList = () => {
@@ -25,17 +25,16 @@ const FilmList = () => {
     const [filmName, setFilmName] = useState('');
     const [planet, setPlanet] = useState('');
     const [newFilm, addFilm] = useState([]);
+    const [filmCount, setFilmCount] = useState();
 
-    const handleChangeFilmName = (name) =>{
+    const handleChangeFilmName = (name) => {
         setFilmName(name.target.value);
     }
 
     const handleAdd = () => {
-
         const planetsApiSearch = [...planet].map( e => {
             return `https://swapi.dev/api/planets/?search=${e.title}`
         })
-
         const newFilm = {
             title: filmName,
             planets: [...planetsApiSearch],
@@ -47,6 +46,7 @@ const FilmList = () => {
         async function fetchData() {
           const result = await axios(apiUrl)
           setFilms(result.data.results);
+          setFilmCount(result.data.count);
         }
         fetchData();
     }, []); 
@@ -58,6 +58,7 @@ const FilmList = () => {
                     {films.map((film, index) =>
                         <Film 
                         key={film.title} 
+                        filmCount={filmCount}
                         filmId={index} 
                         title={film.title}
                         listOfAllFilms={films} />

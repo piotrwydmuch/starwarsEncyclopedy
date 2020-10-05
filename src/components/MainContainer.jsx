@@ -5,6 +5,7 @@ import FilmList from './FilmList.jsx';
 //import AddFilm from './AddFilm.jsx';
 
 import Logo from '../../images/LOGO.svg';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -32,12 +33,12 @@ const MainContainer = () => {
     const classes = useStyles();
     return ( 
         <>
-            <dic className={classes.mainContainer}>
+            <div className={classes.mainContainer}>
                 <img className={classes.logo} src={Logo} alt="Logo"/>
                 <div className={classes.filmsContainer}>
                     <FilmList />
                 </div>
-            </dic>
+            </div>
         </>
     );
 }
