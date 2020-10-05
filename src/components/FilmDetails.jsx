@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from "@material-ui/core/styles";
-import { styled } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles({
     firstTableCell: {
@@ -37,8 +37,10 @@ const FilmDetails = (props) => {
                             <TableCell align="right">Population</TableCell>
                         </TableRow>
                     </TableHead>
+                    {console.log(props.newPlanetDetails)}
+                    {console.log(props.plantesDetails)}
                     <TableBody>
-                    {props.plantesDetails.map((planet) => (
+                    {   props.plantesDetails.map((planet) => (
                         <TableRow key={planet.data.name}>
                             <TableCell align="left" component="th" scope="row" className={classes.firstTableCell}>
                                 {planet.data.name}
@@ -50,7 +52,23 @@ const FilmDetails = (props) => {
                             <TableCell classsName={classes.customTableCell} align="right">{planet.data.surface_water}</TableCell>
                             <TableCell classsName={classes.customTableCell} align="right">{planet.data.population}</TableCell>
                         </TableRow>
-                    ))}
+                        ))
+                    }
+                    {   props.newPlanetDetails.map((planet) => (
+                        <TableRow key={planet.data.results[0].name}>
+                            <TableCell align="left" component="th" scope="row" className={classes.firstTableCell}>
+                                {planet.data.results[0].name}
+                            </TableCell>
+                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].rotation_period}</TableCell>
+                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].orbital_period}</TableCell>
+                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].diameter}</TableCell>
+                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].climate}</TableCell>
+                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].surface_water}</TableCell>
+                            <TableCell classsName={classes.customTableCell} align="right">{planet.data.results[0].population}</TableCell>
+                        </TableRow>
+                        ))
+                    }
+                   
                     </TableBody>
                 </Table>
             </TableContainer>

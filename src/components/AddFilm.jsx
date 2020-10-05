@@ -75,27 +75,8 @@ const planetList = [
     { title: 'Endor'},
 ]
 
-const AddFilm = () => {
+const AddFilm = (props) => {
     const classes = useStyles();
-
-    const [filmName, setFilmName] = useState('');
-    const [planet, setPlanet] = useState('');
-    const [newFilm, addFilm] = useState([]);
-
-    const handleChangeFilmName = (name) =>{
-        setFilmName(name.target.value);
-    }
-    const handleChangePlanet = (planet) =>{
-        setPlanet(planet.target.value);
-    }
-
-    const handleAdd = () => {
-        const newFilm = {
-            name: filmName,
-            planet: planet,
-        }
-        addFilm(newFilm);
-    }
 
     return ( 
         <>
@@ -111,14 +92,13 @@ const AddFilm = () => {
                             className={classes.formInput} 
                             label="Movie tittle"
                             placeholder="Please enter the tittle of the movie"
-                            onChange={handleChangeFilmName}
+                            onChange={props.handleChangeFilmName}
                             />
                             <Autocomplete
                             id="combo-box-demo"
-                            planet={planet}
-                            onChange={(event, planet) => {
-                                setPlanet(planet);
-                            }}
+                            multiple
+                            planet={props.planet}
+                            onChange={props.onChange}
                             options={planetList}
                             getOptionLabel={(option) => option.title}
                             className={classes.formInput}
@@ -128,23 +108,12 @@ const AddFilm = () => {
                                 placeholder="Seacrh for the the planet in database" 
                                 />}
                             />
-                            {/* <Autocomplete
-                            id="combo-box-demo"
-                            options={top100Films}
-                            className={classes.formInput} 
-                            renderInput={() => <TextField 
-                                id="standard-second"
-                                label="Add Planet" 
-                                placeholder="Seacrh for the the planet in database"
-                                />}
-                            /> */}
-                            
                             <Button 
                             type="button"
                             variant="contained" 
                             color="secondary" 
                             className={classes.submitBtn}
-                            onClick={handleAdd}>
+                            onClick={props.handleAdd}>
                             Add movie
                             </Button>
                         </form>

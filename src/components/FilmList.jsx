@@ -22,10 +22,31 @@ const FilmList = () => {
     const [films, setFilms] = useState([]);
     const apiUrl = 'https://swapi.dev/api/films/';
 
+    const [filmName, setFilmName] = useState('');
+    const [planet, setPlanet] = useState('');
+    const [newFilm, addFilm] = useState([]);
+
+    const handleChangeFilmName = (name) =>{
+        setFilmName(name.target.value);
+    }
+
+    const handleAdd = () => {
+
+        const planetsApiSearch = [...planet].map( e => {
+            return `https://swapi.dev/api/planets/?search=${e.title}`
+        })
+
+        const newFilm = {
+            title: filmName,
+            planets: [...planetsApiSearch],
+        }
+        setFilms(films => [...films, newFilm]);
+    }
+
     useEffect(() => {
         async function fetchData() {
-          const result = await axios(apiUrl);
-          setFilms(result.data.results)
+          const result = await axios(apiUrl)
+          setFilms(result.data.results);
         }
         fetchData();
     }, []); 
@@ -38,11 +59,17 @@ const FilmList = () => {
                         <Film 
                         key={film.title} 
                         filmId={index} 
-                        title={film.title} />
+                        title={film.title}
+                        listOfAllFilms={films} />
                     )}
                 </ul>
             </div>
-            <AddFilm />
+            <AddFilm 
+            newFilm={newFilm} 
+            handleChangeFilmName={handleChangeFilmName} 
+            onChange={(event, planet) => {setPlanet(planet)}}
+            planet={planet}
+            handleAdd={handleAdd} />
         </>
     );
 }

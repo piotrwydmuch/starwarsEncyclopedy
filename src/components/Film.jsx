@@ -37,14 +37,27 @@ const Film = (props) => {
     
     const [filmDetails, setFilmDetails] = useState([]);
     const [planetDetails, setPlanetDetails] = useState([]);
+    
+    const [newPlanetDetails, setNewPlanetDetails] = useState([]);
+    
+    // const [newFilmDetails, setNewFilmDetails] = useState([]);
+    // const [planetNewFilmDetails, setPlanetNewFilmDetails] = useState([]);
         
-    const dataCollapsed = useCallback((filmId) => {        
-        const apiUrl = `https://swapi.dev/api/films/${filmId}/`;
-        async function fetchData() {
-            const result = await axios(apiUrl);
-            setFilmDetails(result.data)
+    const dataCollapsed = useCallback((filmId) => {    
+        if (filmId <= 6) {
+            const apiUrl = `https://swapi.dev/api/films/${filmId}/`;
+            async function fetchData() {
+                const result = await axios(apiUrl);
+                setFilmDetails(result.data);
+            }
+            fetchData();
+        } else {
+            const lastAddedFilmArr = props.listOfAllFilms;
+            const newFilm = lastAddedFilmArr[lastAddedFilmArr.length - 1];
+            const newFilmPlanets = newFilm.planets.map(e => e)
+            Promise.all(newFilmPlanets.map(e => axios.get(e)))
+            .then(results=> setNewPlanetDetails(results));
         }
-        fetchData();
     }, []);
 
     const getPlanets = async (planetAPI) => {;
@@ -53,10 +66,13 @@ const Film = (props) => {
         .then(results=> setPlanetDetails(results));
     }
 
+
     useEffect(() => {
         const planetsApiUrls = filmDetails.planets;
         getPlanets(planetsApiUrls);
     }, [filmDetails.planets]);
+
+
     
     return ( 
         <>
@@ -65,7 +81,7 @@ const Film = (props) => {
                     <CustomTypography>{props.title}<img src={ArrowOpen} /></CustomTypography>
                 </CustomAccordionSummary>
                 <AccordionDetails>
-                    <FilmDetails plantesDetails={[...planetDetails]} />
+                    <FilmDetails plantesDetails={[...planetDetails]} newPlanetDetails={[...newPlanetDetails]} />
                 </AccordionDetails>
             </AccordionElement>
         </>
