@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 
-import FilmList from './FilmList.jsx';
-//import AddFilm from './AddFilm.jsx';
+import ListOfFilms from './ListOfFilms.jsx';
 
 import Logo from '../../images/LOGO.svg';
-import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles({
     mainContainer: {
@@ -36,7 +34,7 @@ const MainContainer = () => {
             <div className={classes.mainContainer}>
                 <img className={classes.logo} src={Logo} alt="Logo"/>
                 <div className={classes.filmsContainer}>
-                    <FilmList />
+                    <ListOfFilms />
                 </div>
             </div>
         </>

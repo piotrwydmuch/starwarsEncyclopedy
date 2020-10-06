@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
 });
 
-const FilmList = () => {
+const ListOfFilms = () => {
 
     const [films, setFilms] = useState([]);
     const apiUrl = 'https://swapi.dev/api/films/';
@@ -57,22 +57,24 @@ const FilmList = () => {
                 <ul className={classes.filmList}>
                     {films.map((film, index) =>
                         <Film 
-                        key={film.title} 
-                        filmCount={filmCount}
-                        filmId={index} 
-                        title={film.title}
-                        listOfAllFilms={films} />
+                            key={film.title} 
+                            filmCount={filmCount}
+                            filmId={index} 
+                            title={film.title}
+                            listOfAllFilms={films} 
+                        />
                     )}
                 </ul>
             </div>
             <AddFilm 
-            newFilm={newFilm} 
-            handleChangeFilmName={handleChangeFilmName} 
-            onChange={(event, planet) => {setPlanet(planet)}}
-            planet={planet}
-            handleAdd={handleAdd} />
+                newFilm={newFilm} 
+                handleChangeFilmName={handleChangeFilmName} 
+                onChange={(event, planet) => {setPlanet(planet)}}
+                planet={planet}
+                handleAdd={handleAdd} 
+            />
         </>
     );
 }
  
-export default FilmList;
+export default ListOfFilms;

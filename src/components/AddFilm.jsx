@@ -9,10 +9,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from "@material-ui/core/styles";
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 import ArrowOpen from '../../images/ARROW_OPEN.svg';
-import ArrowClose from '../../images/ARROW_CLOSE.svg';
 
 const useStyles = makeStyles({
     container: {
@@ -67,56 +65,109 @@ const useStyles = makeStyles({
 });
 
 const planetList = [
-    { title: 'Tatooine'},
-    { title: 'Alderaan'},
-    { title: 'Yavin IV'},
-    { title: 'Hoth'},
-    { title: 'Dagobah'},
-    { title: "Bespin"},
-    { title: 'Endor'},
+    {title:'Tatooine'},
+    {title:'Alderaan'},
+    {title:'Yavin IV'},
+    {title:'Hoth'},
+    {title:'Dagobah'},
+    {title:'Bespin'},
+    {title:'Endor'},
+    {title:'Naboo'},
+    {title:'Coruscant'},
+    {title:'Kamino'},
+    {title:'Geonosis'},
+    {title:'Utapau'},
+    {title:'Mustafar'},
+    {title:'Kashyyyk'},
+    {title:'Polis Massa'},
+    {title:'Mygeeto'},
+    {title:'Felucia'},
+    {title:'Cato Neimoidia'},
+    {title:'Saleucami'},
+    {title:'Stewjon'},
+    {title:'Eriadu'},
+    {title:'Corellia'},
+    {title:'Rodia'},
+    {title:'Nal Hutta'},
+    {title:'Dantooine'},
+    {title:'Bestine IV'},
+    {title:'Ord Mantell'},
+    {title:'Trandosha'},
+    {title:'Socorro'},
+    {title:'Mon Cala'},
+    {title:'Chandrila'},
+    {title:'Sullust'},
+    {title:'Toydaria'},
+    {title:'Malastare'},
+    {title:'Dathomir'},
+    {title:'Ryloth'},
+    {title:'Aleen Minor'},
+    {title:'Vulpter'},
+    {title:'Troiken'},
+    {title:'Tund'},
+    {title:'Haruun Kal'},
+    {title:'Cerea'},
+    {title:'Glee Anselm'},
+    {title:'Iridonia'},
+    {title:"Thol'oth"},
+    {title:'Iktotch'},
+    {title:'Quermia'},
+    {title:'Dorin'},
+    {title:'Champala'},
+    {title:'Mirial'},
+    {title:'Serenno'},
+    {title:'Concord Dawn'},
+    {title:'Zolan'},
+    {title:'Ojom'},
+    {title:'Skako'},
+    {title:'Muunilinst'},
+    {title:'Shili'},
+    {title:'Kalee'},
+    {title:'Umbara'},
 ]
 
 const AddFilm = (props) => {
+
     const classes = useStyles();
-
-
     return ( 
         <>
             <div className={classes.container}>
                 <Accordion className={classes.accordionElement}>
-                    <AccordionSummary className={classes.customAccordionSummary}>
-                        <Typography className={classes.customTypgraphy}>Add movie<img src={ArrowOpen} /></Typography>
+                    <AccordionSummary className={classes.customAccordionSummary} expandIcon={<img src={ArrowOpen}/>}>
+                        <Typography className={classes.customTypgraphy}>
+                            Add movie
+                        </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <form className={classes.customForm} autoComplete="off">
                             <TextField 
-                            id="standard-first" 
-                            className={classes.formInput} 
-                            label="Movie tittle"
-                            placeholder="Please enter the tittle of the movie"
-                            onChange={props.handleChangeFilmName}
+                                id="standard-first" 
+                                className={classes.formInput} 
+                                label="Movie tittle"
+                                placeholder="Please enter the tittle of the movie"
+                                onChange={props.handleChangeFilmName}
                             />
                             <Autocomplete
-                            id="combo-box-demo"
-                            multiple
-                            planet={props.planet}
-                            onChange={props.onChange}
-                            options={planetList}
-                            getOptionLabel={(option) => option.title}
-                            className={classes.formInput}
-                            renderInput={(params) => <TextField {...params} 
+                                id="combo-box-demo"
+                                multiple
+                                planet={props.planet}
+                                onChange={props.onChange}
+                                options={planetList}
+                                getOptionLabel={(option) => option.title}
                                 className={classes.formInput}
-                                label="Add Planet" 
-                                placeholder="Seacrh for the the planet in database" 
+                                renderInput={(params) => <TextField {...params} 
+                                    className={classes.formInput}
+                                    label="Add Planet" 
+                                    placeholder="Seacrh for the the planet in database" 
                                 />}
                             />
                             <Button 
-                            type="button"
-                            variant="contained" 
-                            color="secondary" 
-                            className={classes.submitBtn}
-                            onClick={props.handleAdd}>
-                            Add movie
+                                type="button"
+                                variant="contained" 
+                                color="secondary" 
+                                className={classes.submitBtn}
+                                onClick={props.handleAdd}>
+                                Add movie
                             </Button>
                         </form>
                     </AccordionDetails>

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 
-import FilmDetails from './FilmDetails.jsx';
+import FilmPlanets from './FilmPlanets.jsx';
 
 import { styled } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -10,7 +10,6 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 
 import ArrowOpen from '../../images/ARROW_OPEN.svg';
-import ArrowClose from '../../images/ARROW_CLOSE.svg';
 
 const AccordionElement = styled(Accordion)({
     fontFamily: 'Barlow',
@@ -69,12 +68,19 @@ const Film = (props) => {
 
     return ( 
         <>
-            <AccordionElement onClick={() => dataCollapsed(props.filmId+1)} id={`accordion_id${props.filmId+1}`}>
-                <CustomAccordionSummary>
-                    <CustomTypography>{props.title}<img src={ArrowOpen} /></CustomTypography>
+            <AccordionElement 
+                onClick={() => dataCollapsed(props.filmId+1)} 
+                id={`accordion_id${props.filmId+1}`}>
+                <CustomAccordionSummary expandIcon={<img src={ArrowOpen}/>}>
+                    <CustomTypography>
+                        {props.title}
+                    </CustomTypography>
                 </CustomAccordionSummary>
                 <AccordionDetails>
-                    <FilmDetails plantesDetails={[...planetDetails]} newPlanetDetails={[...newPlanetDetails]} />
+                    <FilmPlanets
+                        plantesDetails={[...planetDetails]} 
+                        newPlanetDetails={[...newPlanetDetails]} 
+                    />
                 </AccordionDetails>
             </AccordionElement>
         </>

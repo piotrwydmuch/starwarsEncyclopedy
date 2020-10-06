@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     }
 });
 
-const FilmDetails = (props) => {
+const FilmPlanets = (props) => {
     const classes = useStyles();
     return (
         <>
@@ -42,7 +42,7 @@ const FilmDetails = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {/* films downloaded from API */}
+                    {/* films downloaded from Films API */}
                     {   props.plantesDetails.map((planet) => (
                         <TableRow key={planet.data.name}>
                             <TableCell align="left" component="th" scope="row" className={classes.firstTableCell}>
@@ -77,4 +77,4 @@ const FilmDetails = (props) => {
     )
 }
 
-export default FilmDetails;
+export default FilmPlanets;
