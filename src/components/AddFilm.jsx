@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -55,12 +54,19 @@ const useStyles = makeStyles({
         '& .MuiInput-underline:after': {
             borderBottomColor: '#1BA1BE',
         },
+        '& .MuiChip-root': {
+            background: 'transparent',
+            border: '1px solid #dedede',
+        }
     },
     submitBtn: {
         textTransform: 'uppercase',
         margin: '10px 0',
         padding: '1.5% 10%',
-        backgroundColor: '#1BA1BE'
+        backgroundColor: '#1BA1BE',
+        '&:hover': {
+            backgroundColor:'#17798e',
+        },
     }
 });
 
@@ -127,7 +133,6 @@ const planetList = [
 ]
 
 const AddFilm = (props) => {
-
     const classes = useStyles();
     return ( 
         <>
@@ -141,14 +146,14 @@ const AddFilm = (props) => {
                     <AccordionDetails>
                         <form className={classes.customForm} autoComplete="off">
                             <TextField 
-                                id="standard-first" 
+                                id="film-name" 
                                 className={classes.formInput} 
-                                label="Movie tittle"
-                                placeholder="Please enter the tittle of the movie"
+                                label="Movie title"
+                                placeholder="Please enter the title of the movie"
                                 onChange={props.handleChangeFilmName}
                             />
                             <Autocomplete
-                                id="combo-box-demo"
+                                id="choose-planets"
                                 multiple
                                 planet={props.planet}
                                 onChange={props.onChange}
